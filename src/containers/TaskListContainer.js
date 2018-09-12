@@ -1,22 +1,18 @@
 import { connect } from "react-redux";
-import TaskList from "../../components/TaskList";
+import TaskList from "../components/TaskList";
 
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
 const mapStateToProps = (state, { id }) => {
     return {
         // this is why storing articles in an object is useful
-        task: state.task[id],
+        tasks: state.tasks,
     };
 };
 
 const mapDispatchToProps = (dispatch, { id }) => {
     return {
-        onDelete: () => {
-            dispatch(removeTaskList(id));
-            history.push("/");
-        },
-    	onLoad: () => dispatch(getTaskList(id)),
+    	// onLoad: () => dispatch(getTaskList(id)),
     };
 };
 
