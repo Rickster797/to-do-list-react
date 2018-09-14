@@ -22,18 +22,19 @@ const addTaskButton = {
 // shows a list of articles
 class TaskList extends Component {
 
-    // componentDidUpdate() {
-    // }
+    componentDidMount() {
+        this.props.getTasks()
+    }
 
     render() {
-        const { tasks, markComplete, deleteTask, addTask } = this.props;
+        const { tasks, markComplete, deleteTask, addTask, getTasks } = this.props;
         console.log(tasks);
         return (
             <React.Fragment>
             <h1>To do List</h1>
             <button className="btn btn-primary" style={addTaskButton}>Add Task</button>
                 <Form addTask={addTask}/>
-                { Object.values(tasks).length ?
+                { tasks && Object.values(tasks).length ?
                     <ul className="list-group" style={ulStyle}>
                         { /* map over each article and display a list item for each one */ }
                         { Object.values(tasks).map((task, index )=> (

@@ -3,6 +3,7 @@ import TaskList from "../components/TaskList";
 import { markComplete } from "../data/actions/actions";
 import { deleteTask } from "../data/actions/actions";
 import { addTask } from "../data/actions/actions";
+import { getTasks } from "../data/actions/actions";
 
 
 
@@ -18,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
     	addTask: (data) => {
 			const action = addTask(data);
 			dispatch(action)
-    	}
+    	},
+    	getTasks: () => dispatch(getTasks())
     }
 };
 
