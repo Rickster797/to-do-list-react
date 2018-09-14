@@ -1,21 +1,25 @@
 import { connect } from "react-redux";
 import TaskList from "../components/TaskList";
+import { markComplete } from "../data/actions/actions";
+import { deleteTask } from "../data/actions/actions";
+import { addTask } from "../data/actions/actions";
+
 
 
 // the second argument passed to mapStateToProps represent the props passed in from the parent
-const mapStateToProps = (state, { id }) => {
+const mapStateToProps = (state, { id }) => ({
+    tasks: state.tasks,
+});
+
+const mapDispatchToProps = (dispatch) => {
     return {
-        // this is why storing articles in an object is useful
-        tasks: state.tasks,
-    };
+    	markComplete: (id) => dispatch(markComplete(id)),
+    	deleteTask: (id) => dispatch(deleteTask(id)),
+    	addTask: (data) => {
+			const action = addTask(data);
+			dispatch(action)
+    	}
+    }
 };
 
-const mapDispatchToProps = (dispatch, { id }) => {
-    return {
-    	// onLoad: () => dispatch(getTaskList(id)),
-    };
-};
-
-// connect up mapStateToProps with the Article component
-// Article's props are now controlled by this file
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
